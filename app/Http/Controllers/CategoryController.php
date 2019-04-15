@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Category;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = Category::all();
+        return View('category.index', compact('category'));
+
     }
 
     /**
@@ -24,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return View('category.create');
     }
 
     /**
@@ -35,7 +38,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:2',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('category/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else{
+            $categories = new Category();
+            $categories->name = $request->name;
+            $categories->save();
+
+            return redirect('category')->with('succes', "Student created with succes");
+        }
     }
 
     /**
@@ -46,7 +64,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return View('category.show');
     }
 
     /**
@@ -57,7 +75,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return View('category.edit', compact('categories'));
     }
 
     /**
@@ -67,9 +85,19 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $categories)
     {
-        //
+        $this->validate(request(),[
+            'name' => 'required'
+            ]);
+
+
+        $categories->name = $request->name;
+        $categories->updated_at = now();
+
+        $categories->save();
+
+        return Redirect('/category');
     }
 
     /**
@@ -80,6 +108,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect('category')->with('succes', 'Category has been deleted with succes');
     }
 }
