@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
 use App\Category;
+use Session;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -38,22 +38,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|min:2',
-        ]);
+        $this->validate(request(),[
+            'name' => 'required'
+            ]);
 
-        if ($validator->fails()) {
-            return redirect('category/create')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-        else{
             $categories = new Category();
             $categories->name = $request->name;
             $categories->save();
 
-            return redirect('category')->with('succes', "Student created with succes");
-        }
+            Session::flash('flash_message_create', 'Category Successfully Added!');
+            return redirect('category');
     }
 
     /**
@@ -64,7 +58,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return View('category.show');
+        return View('category.show', compact('category'));
     }
 
     /**
@@ -75,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return View('category.edit', compact('categories'));
+        return View('category.edit', compact('category'));
     }
 
     /**
@@ -85,19 +79,19 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $categories)
+    public function update(Request $request, Category $category)
     {
         $this->validate(request(),[
             'name' => 'required'
             ]);
 
-
-        $categories->name = $request->name;
-        $categories->updated_at = now();
-
-        $categories->save();
-
+        
+            $category->name = $request->input('name');
+            $category->save();
+        
+        \Session::flash('flash_message_create', 'Category Successfully Updated!');
         return Redirect('/category');
+
     }
 
     /**
@@ -109,6 +103,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect('category')->with('succes', 'Category has been deleted with succes');
+
+        \Session::flash('flash_message_create', 'Category Successfully Deleted!');
+        return redirect('category');
     }
 }

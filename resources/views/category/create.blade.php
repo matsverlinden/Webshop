@@ -25,10 +25,10 @@
         @csrf
 
 		<div class="form-group row">
-            <label for="name" class="col-sm-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+            <label for="name" class="col-sm-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
             <div class="col-md-6">
-                <input id="name" type="text" name="name" value="{{ old('name') }}"  autofocus>
+                <input id="name" type="text" name="name"  autofocus>
             </div>
         </div>
 

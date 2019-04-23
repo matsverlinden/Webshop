@@ -21,15 +21,15 @@
 	    </ul>
 	</nav>
 
-	<form method="POST" action="{{ action(CategoryController::class . '@update', '@category')}}">
-        @method('PATCH')
+	<form method="POST" action="{{ action(CategoryController::class . '@update', $category) }}">
         @csrf
+        @method('PUT')
 
 		<div class="form-group row">
             <label for="name" class="col-sm-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
             <div class="col-md-6">
-                <input id="name" type="text" name="name" value="test" autofocus>
+                <input id="name" type="text" name="name" value="{{ $category->name }}" autofocus>
             </div>
         </div>
 
