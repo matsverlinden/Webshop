@@ -17,6 +17,12 @@ class ProductController extends Controller
     {
         $product = Product::all();
         return View('product.index', compact('product'));
+ 
+        // $category = DB::table('category')
+        //     ->join('products', 'category.id', '=', 'products.category_id')
+        //     ->join('orders', 'category.id', '=', 'orders.category_id')
+        //     ->select('category.*', 'products.phone', 'orders.price')
+        //     ->get();
     }
 
     /**

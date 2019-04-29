@@ -39,14 +39,12 @@
         </div>
         <div class="form-group row">
             <div class="col-md-6">
-            <label>Category: (currently <b>{{ $product->product_category}}</b>).</label>
-                    <select name="product_category" id="category">
-                        <option value="Shoes">Shoes</option>
-                        <option value="Shirts">Shirts</option>
-                        <option value="Pants">Pants</option>
-                        <option value="Caps">Caps</option>
-                        <option value="Games">Games</option>
-                    </select>
+            <label>Category: (currently <b>{{ $product->product_category}}</b>).</label><br>
+                        <input type="radio" name="product_category" value="Shoes">Shoes</input>
+                        <input type="radio" name="product_category" value="Shirts">Shirts</input>
+                        <input type="radio" name="product_category" value="Pants">Pants</input><br>
+                        <input type="radio" name="product_category" value="Food">Food</input>
+                        <input type="radio" name="product_category" value="Drinks">Drinks</input>
               </div>
         </div>
 
