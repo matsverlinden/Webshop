@@ -14,34 +14,39 @@ class ProductTableSeeder extends Seeder
         DB::table('products')->insert([
             'name' => 'Nike PG 3',
             'price' => 120.00,
-            'product_category' => 'Shoes',
+            'category_id' => 1,
+            'img/bla.jpg',
             'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('products')->insert([
             'name' => 'Hollister Muscle Fit Graphic Tee',
             'price' => 25.00,
-            'product_category' => 'Shirts',
+            'category_id' => 2,
+            'img/bla.jpg',
             'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('products')->insert([
             'name' => 'Forever 21 Striped-Trim Distressed Jeans',
             'price' => 32.00,
-            'product_category' => 'Pants',
+            'category_id' => 3,
+            'img/bla.jpg',
             'created_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('products')->insert([
             'name' => 'Pizza chicken kebab',
             'price' => 8.50,
-            'product_category' => 'Food',
+            'category_id' => 4,
+            'img/bla.jpg',
             'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('products')->insert([
             'name' => 'Red Bull energy drink',
             'price' => 2.50,
-            'product_category' => 'Drinks',
+            'category_id' => 5,
+            'img/bla.jpg',
             'created_at' => date("Y-m-d H:i:s")
         ]);
     }

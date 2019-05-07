@@ -17,11 +17,11 @@ class ProductController extends Controller
     {
         $product = Product::all();
         return View('product.index', compact('product'));
- 
-        // $category = DB::table('category')
-        //     ->join('products', 'category.id', '=', 'products.category_id')
-        //     ->join('orders', 'category.id', '=', 'orders.category_id')
-        //     ->select('category.*', 'products.phone', 'orders.price')
+        
+        // $users = DB::table('users')
+        //     ->join('contacts', 'users.id', '=', 'contacts.user_id')
+        //     ->join('orders', 'users.id', '=', 'orders.user_id')
+        //     ->select('users.*', 'contacts.phone', 'orders.price')
         //     ->get();
     }
 

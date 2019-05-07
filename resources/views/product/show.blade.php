@@ -16,12 +16,12 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{ $category->id }}</td>
-            <td>{{ $category->name }}</td>
-            <td>{{ $category->price }}</td>
-            <td>{{ $category->product_category }}</td>
-            <td>{{ $category->created_at}} </td>
-            <td>{{ $category->updated_at}} </td>
+            <td>{{ $product->id }}</td>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->price }}</td>
+            <td>{{ $product->product_category }}</td>
+            <td>{{ $product->created_at}} </td>
+            <td>{{ $product->updated_at}} </td>
         </tr>
     </tbody>
 
