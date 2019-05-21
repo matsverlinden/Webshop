@@ -28,7 +28,7 @@ class CategoryTableSeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'Food',
+            'name' => 'Pizza',
             'created_at' => date("Y-m-d H:i:s")
         ]);
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateProductsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations. 
      *
      * @return void
      */
@@ -16,9 +16,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('price');
+            $table->decimal('price');
             $table->bigInteger('category_id');
-            $table->image('image');
+            $table->string('image');  
             $table->timestamps();
 
         });

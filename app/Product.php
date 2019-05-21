@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    public function category(){
+        return $this->belongsTo(\App\Category::class);
+    }   
     protected $table = 'products';
     protected $fillable = [
         'name',
@@ -13,4 +16,5 @@ class Product extends Model
         'product_category',
         'image'
     ];
+
 }

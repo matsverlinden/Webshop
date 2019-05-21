@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Category;
+use App\Product;
 use Session;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $products = Product::all();
         $category = Category::all();
-        return View('category.index', compact('category'));
+        return View('category.index', compact('category','products'));
     }
 
     /**
@@ -58,7 +60,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return View('category.show', compact('category'));
+        $products = $category->products;
+        $category = Category::all();
+        return View('category.show', compact('category','products'));
     }
 
     /**
@@ -91,7 +95,6 @@ class CategoryController extends Controller
         
         \Session::flash('flash_message_create', 'Category Successfully Updated!');
         return Redirect('/category');
-
     }
 
     /**
