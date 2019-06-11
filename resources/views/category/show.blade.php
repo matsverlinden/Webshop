@@ -11,8 +11,12 @@
   <meta name="author" content="">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kanit:200&display=swap" rel="stylesheet">
   <link href="css/shop-homepage.css" rel="stylesheet">
 <link rel="stylesheet" href="css/template.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
   <title>Webshop - Mats Verlinden</title>
 </head>
 
@@ -28,12 +32,15 @@
         <ul class="navbar-nav ml-auto">
             <br><br>
         </ul>
+        <ul class="navbar-nav ml-auto">
+        <a href="../cart" class="btn btn-success"><i class="fas fa-shopping-cart"></i></a>
+        </ul>
       </div>
     </div>
   </nav>
 
   <!-- Page Content -->
-  <a href="../" class="btn btn-primary m-3">Terug naar Producten</a>
+  <a style="font-family: 'Kanit', sans-serif;" href="../" class="btn btn-primary m-3">Terug naar Producten</a>
 
   <div class="container">
 
@@ -42,9 +49,9 @@
       <div class="col-lg-3">
 
         <div class="list-group">
-        <b><h3>Categories</h3></b>
+        <b><h3 style="font-family: 'Kanit', sans-serif;">Categories</h3></b>
         @foreach ($category as $categories)
-          <a href="{{ $categories->id }}" class="list-group-item">{{$categories->name}}</a>
+          <a style="font-family: 'Kanit', sans-serif;" href="{{ $categories->id }}" class="list-group-item">{{$categories->name}}</a>
           @endforeach
         </div>
         
@@ -62,7 +69,7 @@
               <a href="{{route ('product.show', $product->id)}}"><img class="card-img-top" src="../{{ $product->image }}" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="../product/{{ $product->id }}">{{ $product->name }}</a>
+                  <a style="font-family: 'Kanit', sans-serif;" href="../product/{{ $product->id }}">{{ $product->name }}</a>
                 </h4>
                 <h5>€{{$product->price}}</h5>
                 <p class="card-text"></p>

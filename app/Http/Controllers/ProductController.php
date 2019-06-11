@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Product;
 use Session;
 use Illuminate\Http\Request;
@@ -19,6 +20,19 @@ class ProductController extends Controller
         return View('product.index', compact('product')); 
     }
 
+
+    public function getAddToCart($request, $id){
+        $product = Product::find($id);
+        //kijk of oldcart bestaat en als dit het geval is pak die dan, anders word het null
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldcart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        dd($request->session()->get('cart'));
+        return redirect()->route('cart.index');
+
+    }
     /**
      * Show the form for creating a new resource.
      *
