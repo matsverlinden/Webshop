@@ -17,7 +17,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+
 Route::resource('/category','CategoryController');
+Route::resource('/order','OrderController');
 Route::resource('/product','ProductController');
- 
-route::resource('/cart','CartController');
+
+Route::get('/cart/addItem/{id}', 'CartController@add')->name('cart.add');
+Route::get('/cart/removeItem/{id}', 'CartController@remove')->name('cart.remove');
+Route::get('/cart/deleteItem/{id}', 'CartController@delete')->name('cart.delete');
+Route::get('/cart', 'CartController@index')->name('cart.index');

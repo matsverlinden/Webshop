@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,27 +18,11 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kanit:200&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  <title>Webshop - Mats Verlinden</title>
+  <title>Verlinden Shop</title>
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <br><br>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-        <a href="../cart" class="btn btn-success"><i class="fas fa-shopping-cart"></i></a>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
   <!-- Page Content -->
   <a style="font-family: 'Kanit', sans-serif;" href="../" class="btn btn-primary m-3">Terug naar Producten</a>
@@ -54,7 +40,7 @@
                     <h4 style="font-family: 'Kanit', sans-serif;" class="my-4">{{$product->name}}</h4>
                     <div class="h-25"></div>
                     <hr>
-                    <a href="{{route('product.addToCart', ['id' => $product->id])}}" class="float-left btn btn-sm btn-outline-dark"><i class="fas fa-cart-plus"></i></a>
+                    <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="float-left btn btn-sm btn-outline-dark"><i class="fas fa-cart-plus"></i></a>
                     <p class="pt-2 float-right mx-4">&#8364; {{$product->price}}</p>
         </div>
         <div class="col-sm-1"></div>
@@ -62,9 +48,9 @@
 </div>
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-2 bg-dark fixed-bottom">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; By Mats Verlinden 2019</p>
+      <p class="m-0 text-center text-white"> <i> Copyright &copy; By Mats Verlinden 2019 </i></p>
     </div>
     <!-- /.container -->
   </footer>
@@ -72,10 +58,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script>
-  setInterval(function(){ console.log("Mats jij gekkie suck a cuck"); }, 1);
-  </script>
-
 </body>
 
 </html>
+@endsection

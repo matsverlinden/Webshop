@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,23 +23,6 @@
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <br><br>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-        <a href="../cart" class="btn btn-success"><i class="fas fa-shopping-cart"></i></a>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
   <!-- Page Content -->
   <a style="font-family: 'Kanit', sans-serif;" href="../" class="btn btn-primary m-3">Terug naar Producten</a>
@@ -94,9 +79,9 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-3 bg-dark">
+  <footer class="py-2 bg-dark fixed-bottom">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; By Mats Verlinden 2019</p>
+      <p class="m-0 text-center text-white"> <i> Copyright &copy; By Mats Verlinden 2019 </i></p>
     </div>
     <!-- /.container -->
   </footer>
@@ -108,3 +93,4 @@
 </body>
 
 </html>
+@endsection

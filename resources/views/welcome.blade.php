@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,24 +19,11 @@
 <link rel="stylesheet" href="css/template.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-  <title>Webshop - Mats Verlinden</title>
+  <title>Verlinden Shop</title>
 </head>
 
 <body>
- 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-        <a href="cart" class="btn btn-success"><i class="fas fa-shopping-cart"></i></a>
-        </ul>
-      </div>
-    </div>
-  </nav>
+
 
   <!-- Page Content -->
   <div class="container">
@@ -42,7 +32,7 @@
 
       <div class="col-lg-3">
         
-        <h1 class="my-4" style="font-family: 'Montserrat', sans-serif;">Webshop</h1>
+        <h1 class="my-4" style="font-family: 'Montserrat', sans-serif;">Verlinden Shop</h1>
         <div class="list-group">
         <b><h3 style="font-family: 'Kanit', sans-serif;">Categories</h3></b>
         @foreach ($category as $categories)
@@ -69,7 +59,7 @@
                 <p class="card-text"></p>
               </div>
               <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+              <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="float-left btn btn-sm btn-outline-dark"><i class="fas fa-cart-plus"></i></a>
               </div>
             </div>
           </div>
@@ -88,9 +78,9 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-2 bg-dark fixed-bottom">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; By Mats Verlinden 2019</p>
+      <p class="m-0 text-center text-white"> <i> Copyright &copy; By Mats Verlinden 2019 </i></p>
     </div>
     <!-- /.container -->
   </footer>
@@ -102,3 +92,4 @@
 </body>
 
 </html>
+@endsection
