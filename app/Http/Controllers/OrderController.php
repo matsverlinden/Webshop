@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\OrderDetail;
+use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
 
-class OrderDetailController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,9 @@ class OrderDetailController extends Controller
      */
     public function index()
     {
-        $orderDetail = OrderDetail::all();
-        return View('orderDetail.index', compact('orderDetail'));
+        $product = Product::all();
+        return View('order.index', compact('product'));
+
     }
 
     /**
@@ -42,10 +44,10 @@ class OrderDetailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OrderDetail  $orderDetail
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderDetail $orderDetail)
+    public function show(Order $order)
     {
         //
     }
@@ -53,10 +55,10 @@ class OrderDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OrderDetail  $orderDetail
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderDetail $orderDetail)
+    public function edit(Order $order)
     {
         //
     }
@@ -65,10 +67,10 @@ class OrderDetailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OrderDetail  $orderDetail
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderDetail $orderDetail)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -76,10 +78,10 @@ class OrderDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OrderDetail  $orderDetail
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderDetail $orderDetail)
+    public function destroy(Order $order)
     {
         //
     }

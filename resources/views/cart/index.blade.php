@@ -23,6 +23,7 @@
                     <th scope="col">Product</th>
                     <th scope="col">Hoeveelheid</th>
                     <th scope="col">Prijs</th>
+
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -34,15 +35,19 @@
                 <tr>
                     <td><a href="../product/{{ $item['product']->id}}"> <img src="{{ $item['product']->image}}" width="50px" height="70px" >   {{ $item['product']->name }} </a> </td>
                     <td> {{ $item['qty']}} </td>
-                    <td>PRIJS</td>
-                        <td><a href="{{Route('cart.add', $item['product']->id)}}"><i class="fas fa-plus"></i></a></td>
-                        <td><a href="{{Route('cart.remove', $item['product']->id)}}"><i class="fas fa-minus"></i></a></td>
-                        <td><a href="{{Route('cart.delete', $item['product']->id)}}"><i class="fas fa-trash-alt text-danger"></i></a></td>
+                    <td>{{ $item['product']->price * $item['qty']}}</td>
+                    <td><a href="{{Route('cart.add', $item['product']->id)}}"><i class="fas fa-plus"></i></a></td>
+                    <td><a href="{{Route('cart.remove', $item['product']->id)}}"><i class="fas fa-minus"></i></a></td>
+                    <td><a href="{{Route('cart.delete', $item['product']->id)}}"><i class="fas fa-trash-alt text-danger"></i></a></td>
                 </tr>
-                
-                
+                <?php
+                $totalPrice = $item['product']->price * $item['qty'];
+
+                ?>
                 @endforeach
-                <td> <a href="order" class="btn btn-success">Verder naar betalen</a></td>
+                <td><b>Totale prijs: {{ $totalPrice }}</b></td>
+                <td> <a href="{{Route('order.index')}}" class="btn btn-success">Verder naar betalen</a></td>
+
                 @else
                 <tr>
                 <td>
@@ -55,7 +60,6 @@
             </tbody>
     </div>
     </table>
-
 
 </div>
 </div>

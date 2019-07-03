@@ -31,11 +31,16 @@ class CartController extends Controller
 
         return redirect()->route('cart.index');
     }
+
     public function delete($id)
     {
-        $this->cart->delete($id);
+        $product = Product::findOrFail($id);
+
+        Cart::delete($product);        
+
         return redirect()->route('cart.index');
     }
+    
     public function remove($id)
     {
         $product = Product::findOrFail($id);
