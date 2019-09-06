@@ -6,13 +6,6 @@
 <html lang="en">
 
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:100&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kanit:200&display=swap" rel="stylesheet">
   <link href="css/shop-homepage.css" rel="stylesheet">
@@ -60,7 +53,8 @@
                 <p class="card-text"></p>
               </div>
               <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+              <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="float-left btn btn-sm btn-outline-dark"><i class="fas fa-cart-plus"></i></a>
+                
               </div>
             </div>
           </div>

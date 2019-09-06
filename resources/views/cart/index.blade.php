@@ -29,6 +29,9 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
+            <?php
+                $totalPrice = 0;
+            ?>
                 @foreach($cart as $item)
 
             <tbody>
@@ -41,8 +44,7 @@
                     <td><a href="{{Route('cart.delete', $item['product']->id)}}"><i class="fas fa-trash-alt text-danger"></i></a></td>
                 </tr>
                 <?php
-                $totalPrice = $item['product']->price * $item['qty'];
-
+                $totalPrice += $item['product']->price * $item['qty'];
                 ?>
                 @endforeach
                 <td><b>Totale prijs: {{ $totalPrice }}</b></td>
@@ -60,7 +62,6 @@
             </tbody>
     </div>
     </table>
-
 </div>
 </div>
 

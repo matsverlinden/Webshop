@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('/category','CategoryController');
 Route::resource('/order','OrderController');
+Route::resource('/orderView','OrderViewController');
 Route::resource('/product','ProductController');
 
 Route::get('/cart/addItem/{id}', 'CartController@add')->name('cart.add');

@@ -1,54 +1,80 @@
+@extends('layouts.app')
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-
+@section('content')
+<?php 
+    $cartItems = session('cart');
+    $totalPrice = 0;
+?>
 <div class="container">
-<h1>Checkout</h1><br>
-<h3>Total price: 83,99</h3>
-<form>
-<div class="form-group">
-    <label>Voornaam</label>
-    <input type="text" class="form-control" placeholder="Mats">
-  </div>
-  <div class="form-group">
-    <label>Achternaam</label>
-    <input type="text" class="form-control" placeholder="Verlinden">
-  </div>
-  <div class="form-group">
-    <label>E-mail</label>
-    <input type="email" class="form-control" id="" placeholder="name@example.com">
-  </div>
-  <div class="form-group">
-    <label>Woonplaats</label>
-    <input type="text" class="form-control" placeholder="Alblasserdam">
-  </div>
-  <div class="form-group">
-    <label>Adres</label>
-    <input type="text" class="form-control" placeholder="Groen van prinstererstraat 81">
-  </div>
-  <div class="form-group">
-    <label>Postcode</label>
-    <input type="text" class="form-control" id="" placeholder="2953BD">
-  </div>
-  <div class="form-group">
-    <label>Kies uw bank</label>
-    <select class="form-control" id="">
-      <option>ABN AMRO</option>
-      <option>ING</option>
-      <option>Rabobank</option>
-      <option>ASN Bank</option>
-      <option>bunq</option>
-      <option>Handelsbanken</option>
-      <option>Knab</option>
-      <option>moneyou</option>
-      <option>RegioBank</option>
-      <option>SNS</option>
-      <option>Triodos Bank</option>
-      <option>van Lanschot</option>
-    </select>
-  </div>
-    <a href="#" class="btn btn-success" >Verder</a>
-</form>
+    <div class="row justify-content-center">
+        <h1 id="orderTitle">Kassa</h1>
+        <div class="col-6 float-right">
+                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Account</div>
+                    <div class="card-body">
+                        <p>Naam: <b>{{ $user->name }}</b></p>
+                        <p>Email: <b>{{ $user->email }}</b></p>
+                    </div>
+                </div>
+        <div class="row orderRow">
+            <div class="col-8">
+           
+                <table class="table shoppingCartTable">
+                <h4>Uw bestelling:</h4>
+                @if (!Auth::guest())
+
+                    @foreach($cart as $item)
+                    
+                    @if ($item['qty'] > 0)
+                    <tr>
+                        <td>{{ $item['qty'] }}x</td>
+                        <td>{{ $item['product']->name }}</td>
+                        <td>&euro;{{ $item['product']->price * $item['qty']}} </td>
+                    </tr>
+                    @endif
+                    <?php
+                    
+                    $totalPrice += $item['product']->price * $item['qty'];
+                    ?>
+                @endforeach
+
+                <tbody>
+                <!-- <h3>Lever naar:</h3>
+                    <form action="delivery">
+                <label for="">Woonplaats: </label>
+                <input type="text" >
+                <br>
+                <label for="">Adres: </label>
+                <input type="text">
+                <br>
+                <label for="">Postcode: </label>
+                <input type="text" style='text-transform:uppercase'><br><br>
+                    <a class="btn btn-success" href="#">Akkoord</a>
+                    </form> -->
+
+                    
+                    </tbody>
+                </table>
+                <div class="alert alert-success" role="alert">
+                    <p>Totaal: {{ $totalPrice }}</p>
+                </div>
+            </div>
+
+                <form action="{{action('OrderViewController@create')}}" method="put">
+                        @csrf 
+                    <button type="submit" class="btn btn-outline-success">Bestelling afronden</button>
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>
+
+
+                @else
+                <p>niet ingelogd</p>
+                <?php
+                 redirect('../auth/login');
+                ?>
+                @endif
+
+@endsection

@@ -1,5 +1,19 @@
+
+
+
+
+
+
+
+
+<!-- DO NOT USE -->
+
+
+
+
+
 <?php
-namespace App\Http\Custom;
+
 
 use App\Product;
 

@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function getAddToCart($request, $id){
         $product = Product::find($id);
-        //kijk of oldcart bestaat en als dit het geval is pak die dan, anders word het null
+        //kijk of oldcart bestaat. als dit het geval is pak die dan, anders word het null
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldcart);
         $cart->add($product, $product->id);

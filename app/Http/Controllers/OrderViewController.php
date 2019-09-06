@@ -2,37 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
-use App\Product;
+use App\OrderView;
 use Illuminate\Http\Request;
-use App\Helpers\Cart;
-use Session;
-use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class OrderViewController extends Controller
 {
-    public $cart;
-
-    public function __construct(){
-        $this->cart = new Cart();
-    }
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        
-        $user = Auth::user();
-        $products = Product::all();
-        
-        return view('order.index')->with([
-            'cart' => Cart::get(),
-            'user'=> $user
-        ]);
-        // return View('order.index', compact('user','products'));
-
+        $orderView = OrderView::latest()->paginate(5);
+        return view('orderView.index', compact('orderView'))->with('i', (request()->input('page',1) -1)*5);
     }
 
     /**
@@ -42,7 +25,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -53,16 +36,16 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\OrderView  $orderView
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(OrderView $orderView)
     {
         //
     }
@@ -70,10 +53,10 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\OrderView  $orderView
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(OrderView $orderView)
     {
         //
     }
@@ -82,10 +65,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
+     * @param  \App\OrderView  $orderView
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, OrderView $orderView)
     {
         //
     }
@@ -93,10 +76,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order  $order
+     * @param  \App\OrderView  $orderView
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function delete(OrderView $orderView)
     {
         //
     }
