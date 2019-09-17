@@ -14,8 +14,8 @@ class OrderViewController extends Controller
      */
     public function index()
     {
-        $orderView = OrderView::latest()->paginate(5);
-        return view('orderView.index', compact('orderView'))->with('i', (request()->input('page',1) -1)*5);
+        // $orderView = OrderView::latest()->paginate(5);
+        // return view('orderView.index', compact('orderView'))->with('i', (request()->input('page',1) -1)*5);
     }
 
     /**
@@ -25,7 +25,7 @@ class OrderViewController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('orderView.index');
     }
 
     /**
@@ -36,7 +36,37 @@ class OrderViewController extends Controller
      */
     public function store(Request $request)
     {
-      
+                //insert into orders table
+                $order = Order::create([
+                    'user_id' => auth()->user() ? auth()->user()->id : null,
+                    'user_email' => $request->email,
+                    'user_name' => $request->name,
+                    'totalPrice' => null
+                ]);
+        
+                //insert into order_product table
+                foreach ($cart as $item) {
+                    OrderProduct::create([
+                        'order_id' => $order->id,
+                        'product_id' => $item->product->id,
+                        'quantity' => $item->qty
+                    ]);
+                }
+        
+                Cart::instance('default')->destroy();
+                return redirect()->route('/');
+
+
+
+
+        // $order = new Order([
+        //     'order_id' => $request->get('order_id'),
+        //     'product_id' => $request->get('product_id'),
+        //     'quantity' => $request->get('quantity'),
+        //     'price' => $request->get('price')
+        // ]);
+        // $order->save();
+        // return redirect('/orderView.index')->with('success', 'order saved!');
     }
 
     /**

@@ -5,6 +5,7 @@
     $cartItems = session('cart');
     $totalPrice = 0;
 ?>
+@if (!Auth::guest())
 <div class="container">
     <div class="row justify-content-center">
         <h1 id="orderTitle">Kassa</h1>
@@ -21,7 +22,7 @@
            
                 <table class="table shoppingCartTable">
                 <h4>Uw bestelling:</h4>
-                @if (!Auth::guest())
+                
 
                     @foreach($cart as $item)
                     
@@ -60,8 +61,17 @@
                 </div>
             </div>
 
-                <form action="{{action('OrderViewController@create')}}" method="put">
+                <form action="{{route('orderView.store')}}" method="put">
                         @csrf 
+                        @foreach($cart as $item)
+                        <input type="hidden" name="quantity" value="test">
+                        <input type="hidden" name="" value="">
+                        <input type="hidden" name="" value="">
+                        <input type="hidden" name="" value="">
+                        <input type="hidden" name="" value="">
+                        <input type="hidden" name="" value="">
+                        <input type="hidden" name="" value="">
+                        @endforeach
                     <button type="submit" class="btn btn-outline-success">Bestelling afronden</button>
                 </form>
             </div>
@@ -71,10 +81,11 @@
 
 
                 @else
-                <p>niet ingelogd</p>
-                <?php
-                 redirect('../auth/login');
-                ?>
+                <b><p>niet ingelogd</p></b><br>
+                <b><p>log in om verder te gaan</p></b>
+                
+                 
+                
                 @endif
 
 @endsection
