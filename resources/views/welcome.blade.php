@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if(session()->has('jsAlert'))
+    <script>
+        alert({{ session()->get('jsAlert') }});
+    </script>
+@endif 
+
 <!DOCTYPE html>
 <html lang="en">
 

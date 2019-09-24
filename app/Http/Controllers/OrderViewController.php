@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\OrderView;
 use Illuminate\Http\Request;
+use App\Order;
+use App\Cart;
+use Session;
 
 class OrderViewController extends Controller
 {
@@ -39,34 +42,25 @@ class OrderViewController extends Controller
                 //insert into orders table
                 $order = Order::create([
                     'user_id' => auth()->user() ? auth()->user()->id : null,
-                    'user_email' => $request->email,
-                    'user_name' => $request->name,
-                    'totalPrice' => null
+                    'user_email' => $_POST['user_email'],
+                    'user_name' => $_POST['user_name'],
+                    'totalPrice' => $_POST['total_price'],
                 ]);
         
                 //insert into order_product table
+
+                $cart = Session::get('cart');
                 foreach ($cart as $item) {
                     OrderProduct::create([
                         'order_id' => $order->id,
                         'product_id' => $item->product->id,
-                        'quantity' => $item->qty
+                        'quantity' => $item->qty,
                     ]);
                 }
         
-                Cart::instance('default')->destroy();
-                return redirect()->route('/');
+        
+                return redirect('home');
 
-
-
-
-        // $order = new Order([
-        //     'order_id' => $request->get('order_id'),
-        //     'product_id' => $request->get('product_id'),
-        //     'quantity' => $request->get('quantity'),
-        //     'price' => $request->get('price')
-        // ]);
-        // $order->save();
-        // return redirect('/orderView.index')->with('success', 'order saved!');
     }
 
     /**

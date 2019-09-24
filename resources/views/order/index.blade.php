@@ -61,13 +61,13 @@
                 </div>
             </div>
 
-                <form action="{{route('orderView.store')}}" method="put">
+                <form action="{{route('orderView.store')}}" method="POST">
                         @csrf 
                         @foreach($cart as $item)
-                        <input type="hidden" name="quantity" value="test">
-                        <input type="hidden" name="" value="">
-                        <input type="hidden" name="" value="">
-                        <input type="hidden" name="" value="">
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        <input type="hidden" name="user_email" value="{{ $user->email }}">
+                        <input type="hidden" name="user_name" value="{{ $user->name }}">
+                        <input type="hidden" name="total_price" value="{{ $totalPrice }}">
                         <input type="hidden" name="" value="">
                         <input type="hidden" name="" value="">
                         <input type="hidden" name="" value="">
