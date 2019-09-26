@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\OrderView;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Order;
+use App\OrderProduct;
 use App\Cart;
+use App\Product;
 use Session;
 
 class OrderViewController extends Controller
@@ -17,8 +20,17 @@ class OrderViewController extends Controller
      */
     public function index()
     {
-        // $orderView = OrderView::latest()->paginate(5);
-        // return view('orderView.index', compact('orderView'))->with('i', (request()->input('page',1) -1)*5);
+        $user = Auth::user();
+        $orders = Order::all();
+        $products = Product::all();
+        $orderProduct = Orderproduct::all();
+
+        return view('orderView.index')->with([
+            'user' => $user,
+            'orders' => $orders,
+            'products' => $products,
+            'orderProduct' => $orderProduct
+        ]);
     }
 
     /**
@@ -40,6 +52,7 @@ class OrderViewController extends Controller
     public function store(Request $request)
     {
                 //insert into orders table
+                //get values from the order blade with _POST
                 $order = Order::create([
                     'user_id' => auth()->user() ? auth()->user()->id : null,
                     'user_email' => $_POST['user_email'],
@@ -47,19 +60,21 @@ class OrderViewController extends Controller
                     'totalPrice' => $_POST['total_price'],
                 ]);
         
-                //insert into order_product table
 
+                //insert into order_product table
+                //get product id and quantity from cart
                 $cart = Session::get('cart');
                 foreach ($cart as $item) {
                     OrderProduct::create([
                         'order_id' => $order->id,
-                        'product_id' => $item->product->id,
-                        'quantity' => $item->qty,
+                        'product_id' => $item['product']->id,
+                        'quantity' => $item['qty'],
                     ]);
                 }
-        
-        
-                return redirect('home');
+
+                //Clear the shopping cart and send user back to the shop
+                Session::forget('cart');
+                return redirect('home')->with('message', 'Order placed!');
 
     }
 

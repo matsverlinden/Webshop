@@ -2,11 +2,11 @@
 
 @section('content')
 
-@if(session()->has('jsAlert'))
-    <script>
-        alert({{ session()->get('jsAlert') }});
-    </script>
-@endif 
+@if(session()->has('message'))
+    <div class=" container alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,9 @@
   <?php
     if (Auth::user()) {
       ?>
+      <div class="container">
         <a class="btn btn-success" href="{{Route('orderView.index')}}">Uw bestellingen</a>
+      </div>
       <?php
     }
   ?>

@@ -18,23 +18,41 @@
             <div class="full-right">
                 <h2>Uw Bestellingen</h2>
             </div>
-                <tr>
-                    <th>User Id</th>
-                    <th>Order number</th>
-                    <th>Products</th>
-                    <th>Adress</th>
-                    <th>Ordered add</th>
-                </tr>
-                
-                <tr>
-                    <td><b></b></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <tr>
+                <th>Order number</th>
+                <th>Products</th>
+                <th>Quantity</th>
+                <th>Time of order</th>
+            </tr>
+            {{-- loop through all the orders and products --}}
+            @foreach ($orders as $order)
+            @foreach ($products as $product)
+            @foreach ($orderProduct as $ordproduct)
+            <tr>
+                <?php
+                        $currentUser = Auth::user();
+                        //only show the orders of the person who is logged in right now
+                        if ($order->user_id == $currentUser->id) {
+                        //show name of the products if the id of the product is the same with the ordered one
+                        if ( $ordproduct->product_id == $product->id) {
+                        //show the order if the id of the order is the same order_id from the one in the pivot table
+                        if ($order->id == $ordproduct->order_id) {
 
-            </table>
+                            ?>
+                <td>{{ $order->id }}</td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $ordproduct->quantity }}x</td>
+                <td>{{ $order->created_at }}</td>
+                <?php
+                        }
+                    }
+                }
+                    ?>
+            </tr>
+            @endforeach
+            @endforeach
+            @endforeach
+        </table>
 
 
 

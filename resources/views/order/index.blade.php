@@ -5,6 +5,7 @@
     $cartItems = session('cart');
     $totalPrice = 0;
 ?>
+{{-- if user is logged in, he can proceed otherwise he need to login --}}
 @if (!Auth::guest())
 <div class="container">
     <div class="row justify-content-center">
@@ -34,28 +35,12 @@
                     </tr>
                     @endif
                     <?php
-                    
                     $totalPrice += $item['product']->price * $item['qty'];
                     ?>
                 @endforeach
-
-                <tbody>
-                <!-- <h3>Lever naar:</h3>
-                    <form action="delivery">
-                <label for="">Woonplaats: </label>
-                <input type="text" >
-                <br>
-                <label for="">Adres: </label>
-                <input type="text">
-                <br>
-                <label for="">Postcode: </label>
-                <input type="text" style='text-transform:uppercase'><br><br>
-                    <a class="btn btn-success" href="#">Akkoord</a>
-                    </form> -->
-
-                    
-                    </tbody>
                 </table>
+
+
                 <div class="alert alert-success" role="alert">
                     <p>Totaal: {{ $totalPrice }}</p>
                 </div>
@@ -63,27 +48,21 @@
 
                 <form action="{{route('orderView.store')}}" method="POST">
                         @csrf 
-                        @foreach($cart as $item)
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
                         <input type="hidden" name="user_email" value="{{ $user->email }}">
                         <input type="hidden" name="user_name" value="{{ $user->name }}">
                         <input type="hidden" name="total_price" value="{{ $totalPrice }}">
-                        <input type="hidden" name="" value="">
-                        <input type="hidden" name="" value="">
-                        <input type="hidden" name="" value="">
-                        @endforeach
                     <button type="submit" class="btn btn-outline-success">Bestelling afronden</button>
                 </form>
             </div>
         </div> 
     </div>
 </div>
-
-
                 @else
-                <b><p>niet ingelogd</p></b><br>
+                <div class="container">
+                <b><h3>niet ingelogd</h3></b><br>
                 <b><p>log in om verder te gaan</p></b>
-                
+                </div>
                  
                 
                 @endif

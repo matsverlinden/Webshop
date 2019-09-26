@@ -31,7 +31,6 @@ class OrderController extends Controller
             'cart' => Cart::get(),
             'user'=> $user
         ]);
-        // return View('order.index', compact('user','products'));
 
     }
 
