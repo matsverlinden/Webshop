@@ -60,8 +60,8 @@
 </div>
                 @else
                 <div class="container">
-                <b><h3>niet ingelogd</h3></b><br>
-                <b><p>log in om verder te gaan</p></b>
+                <b><h3>Not logged in</h3></b><br>
+                <b><p>Login to proceed</p></b>
                 </div>
                  
                 
