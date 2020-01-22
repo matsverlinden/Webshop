@@ -1,1 +1,1 @@
-![alt text](https://github.com/matsverlinden/Webshop.git/blob/erd.png)
+![alt text](https://github.com/matsverlinden/Webshop/blob/master/erd.png)
