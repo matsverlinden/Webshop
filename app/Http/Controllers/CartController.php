@@ -9,9 +9,6 @@ use App\Helpers\Cart;
 
 class CartController extends Controller
 {
-    public function __construct(){
-        $this->cart = new Cart();
-    }
     /**  
      * Display a listing of the resource.
      *
@@ -49,11 +46,4 @@ class CartController extends Controller
 
         return redirect()->route('cart.index');
     }
-
-    public function emptySession()
-    {
-    Cart::emptySession();
-    return redirect()->route('cart.index');
-}
-
 }
